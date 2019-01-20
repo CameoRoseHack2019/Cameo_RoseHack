@@ -26,11 +26,11 @@ public class Deck{
         cards.add(new Card('J', 0));
     }
 
+    public int size(){
+        return cards.size();
+    }
     public void shuffleDeck(){
         Collections.shuffle(this.cards);
-    }
-    public Card deleteCard(int index){
-        return cards.remove(index);
     }
     public List<Card> getCards() {
         return cards;

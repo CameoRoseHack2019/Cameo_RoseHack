@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
-
 import android.content.Intent;
 import java.util.List;
 import java.util.Random;
@@ -24,6 +23,7 @@ enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END}
 public class activity_game extends AppCompatActivity {
     List<Card>player1Cards = new ArrayList<>(4);
     List<Card>player2Cards = new ArrayList<>(4);
+    Deck draw = new Deck();
     Button button7;
     Button button9;
     Button button6;
@@ -57,9 +57,7 @@ public class activity_game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.games);
-        Deck draw = new Deck();
         draw.shuffleDeck();
-        DealCardsToPlayers(draw);
         button7 = (Button)findViewById(R.id.button7);
         button9 = (Button)findViewById(R.id.button9);
         button6 = (Button)findViewById(R.id.button6);
@@ -92,7 +90,6 @@ public class activity_game extends AppCompatActivity {
         p1cards.add(tempList1.remove(0));
         p1cards.add(tempList1.remove(0));
 
-
         p2cards = new ArrayList<>(4);
         p2cards.add(tempList1.remove(0));
         p2cards.add(tempList1.remove(0));
@@ -101,89 +98,42 @@ public class activity_game extends AppCompatActivity {
     }
 
     // Play Game
-    void Play(state S) {
-        switch (S) {                // Transition Actions
-            case INIT:                  // Start state
-                S = PLAYER1;        // Go to PLAYER1 state
-                break;
 
-            case PLAYER1:               // PLAYER1 state
-                button9.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        state = END;
-                    }
-                });
-                break;
 
-            case PLAYER2:               // PLAYER2 state
-                button6.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        state = END;
-                    }
-                });
-                break;
-
-            case TIMER:                 // TIMER state
-
-                break;
-
-            case ACTION:                // ACTION state
-
-                break;
-
-            case END:                   // END state;
-
-                break;
-        }
-
-        switch (S) {                // state Actions
-            case INIT:                  // Start state
-                final Deck draw = new Deck();
-                draw.shuffleDeck();
-                DealCardsToPlayers(draw);
-
-                break;
-
-            case PLAYER1:               // PLAYER1 state
                 button7.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        List<> tempList = new List<>;
+                        List<Card> tempList = draw.getCards();
                         Random randomIndex = new Random();
-                        int randomNumber = randomIndex.nextInt();
-
+                        int randomNumber = randomIndex.nextInt(draw.size());
+                        Card toDisplay = tempList.get(randomNumber);
+                        tempList.remove(randomNumber);
+                        int player1Display = getResources().getIdentifier(String.valueOf(toDisplay.getSuit()) + toDisplay.getNum() , "drawable", getPackageName());
+                        p1display.setBackgroundResource(player1Display);
                     }
-                });
-                break;
 
-            case PLAYER2:               // PLAYER2 state
+                button8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        List<Card> tempList = draw.getCards();
+                        Random randomIndex = new Random();
+                        int randomNumber = randomIndex.nextInt(draw.size());
+                        Card toDisplay = tempList.get(randomNumber);
+                        tempList.remove(randomNumber);
+                        int player1Display = getResources().getIdentifier(String.valueOf(toDisplay.getSuit()) + toDisplay.getNum() , "drawable", getPackageName());
+                        p1display.setBackgroundResource(player1Display);
 
-                break;
 
-            case TIMER:                 // TIMER state
 
-                break;
-
-            case ACTION:                // ACTION state
-
-                break;
-
-            case END:                   // END state;
-
-                //IStRUE = FALSE;
-                break;
-        }
 
         GameEnd();
-    }
+
 
 
     private void GameEnd()
     {
 
-        Intent intent = new Intent( this, end_game.class);
+        Intent intent = new Intent( this , end_game.class);
 
         for (int i = 0; i < p1cards.size(); ++i)
         {
@@ -210,5 +160,3 @@ public class activity_game extends AppCompatActivity {
         startActivity(intent);
         //use intent here because we want to move to end_game activity
     }
-
-}
