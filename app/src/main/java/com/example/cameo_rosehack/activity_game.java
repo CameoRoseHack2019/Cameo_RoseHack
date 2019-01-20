@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.example.cameo_rosehack.state.ACTION;
@@ -40,7 +41,7 @@ public class Deck{
     }
 
     public void shuffleDeck(){
-
+        Collections.shuffle(this.cards);
     }
 
     public List<Card> getCards() {
