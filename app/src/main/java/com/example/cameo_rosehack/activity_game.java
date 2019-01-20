@@ -1,6 +1,7 @@
 package com.example.cameo_rosehack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 
 import static com.example.cameo_rosehack.state.ACTION;
 import static com.example.cameo_rosehack.state.END;
@@ -104,7 +105,7 @@ public class activity_game extends AppCompatActivity {
                 break;
         }
 
-        switch (S) {                // state Actions
+        switch (S) {                    // State Actions
             case INIT:                  // Start state
                 Deck draw = new Deck();
                 draw.shuffleDeck();
@@ -113,9 +114,9 @@ public class activity_game extends AppCompatActivity {
                 break;
 
             case PLAYER1:               // PLAYER1 state
+                Button draw1 = (Button) findViewById(R.id.draw1);
 
                 break;
-
             case PLAYER2:               // PLAYER2 state
 
                 break;

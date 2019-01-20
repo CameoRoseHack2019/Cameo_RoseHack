@@ -196,7 +196,7 @@
             android:text="END" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/draw1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="4"
@@ -204,7 +204,7 @@
             android:text="DRAW" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/draw2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="3"
