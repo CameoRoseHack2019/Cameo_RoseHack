@@ -1,6 +1,12 @@
 package com.example.cameo_rosehack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.example.cameo_rosehack.state.ACTION;
 import static com.example.cameo_rosehack.state.END;
 import static com.example.cameo_rosehack.state.INIT;
@@ -13,15 +19,10 @@ enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END}
 
 
 public class activity_game extends AppCompatActivity {
-    /*
-    cards:
-    0: jorker
-    1 - 13: heart
-    14 - 26: spade
-    27 - 39: dia
-    40 - 52: club
-    53: jorker
-     */
+    List<Card>player1Cards = new ArrayList<>(4);
+    List<Card>player2Cards = new ArrayList<>(4);
+
+
    /* private int[] cards =
             {
                     R.drawable.black_joker,
@@ -40,6 +41,9 @@ public class activity_game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.games);
+        Deck draw = new Deck();
+        draw.shuffleDeck();
+        DealCardsToPlayers(draw);
 
        /* Button[] cards_opponent = {
 
@@ -71,8 +75,8 @@ public class activity_game extends AppCompatActivity {
 
     }
 
-    public void DealCardsToPlayers() {
-
+    public void DealCardsToPlayers(Deck d) {
+        List<Card>templist1 = d.getCards();
 
     }
 
@@ -106,14 +110,15 @@ public class activity_game extends AppCompatActivity {
 
         switch (state) {                // state Actions
             case INIT:                  // Start state
-                Deck draw = new Deck();
-                draw.shuffleDeck();
-                DealCardsToPlayers();
-
                 break;
 
             case PLAYER1:               // PLAYER1 state
+                button7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                    }
+                });
                 break;
 
             case PLAYER2:               // PLAYER2 state
