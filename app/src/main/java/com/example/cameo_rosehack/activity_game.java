@@ -107,7 +107,8 @@ public class activity_game extends AppCompatActivity {
     //    middle.setBackgroundResource(cards[cardNum]);
     //}
 
-    public void DealCardsToPlayers(){
+    public void DealCardsToPlayers() {
+
 
     }
 
