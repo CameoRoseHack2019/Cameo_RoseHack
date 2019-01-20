@@ -41,6 +41,9 @@ public class Deck{
         cards.add(new Card('J', 0));
     }
 
+    public void shuffleDeck(){
+
+    }
     public List<Card> getCards() {
         return cards;
     }
@@ -68,6 +71,33 @@ public class MainActivity extends AppCompatActivity {
         switch (state) {                // Transition Actions
             case INIT:                  // Start state
                 state = PLAYER1;        // Go to PLAYER1 state
+                break;
+
+            case PLAYER1:               // PLAYER1 state
+
+                break;
+
+            case PLAYER2:               // PLAYER2 state
+
+                break;
+
+            case TIMER:                 // TIMER state
+
+                break;
+
+            case ACTION:                // ACTION state
+
+                break;
+
+            case END:                   // END state;
+
+                break;
+        }
+
+        switch (state) {                // state Actions
+            case INIT:                  // Start state
+                Deck draw = new Deck();
+                draw.shuffleDeck();
                 break;
 
             case PLAYER1:               // PLAYER1 state
