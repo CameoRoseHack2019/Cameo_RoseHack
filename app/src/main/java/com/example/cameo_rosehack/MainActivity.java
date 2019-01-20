@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import java.util.ArrayList;
 import java.util.*;
@@ -58,6 +59,8 @@ public class Deck{
 }
 =======
 // The different states that the game will be in at all times from start to finish.
+>>>>>>> master
+=======
 >>>>>>> master
 
 // MainActivity
