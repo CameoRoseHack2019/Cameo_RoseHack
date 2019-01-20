@@ -171,12 +171,17 @@ public class activity_game extends AppCompatActivity {
             btt_p1_c1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p1_c1.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p1_c1.setVisibility(View.INVISIBLE);
+                            p1cards.set(0,null);
+                            action();
+                        }
                     }
                 }
             });
+
             btt_p1_c2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -185,48 +190,64 @@ public class activity_game extends AppCompatActivity {
                             timerIsOn = false;
                             btt_p1_c2.setVisibility(View.INVISIBLE);
                             p1cards.set(1,null);
+                            action();
                         }
-                        // TODO: Do the same for all the card buttons!!!!
                     }
                 }
             });
             btt_p1_c3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        // if card exists herr
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p1_c3.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p1_c3.setVisibility(View.INVISIBLE);
+                            p1cards.set(2, null);
+                            action();
+                        }
                     }
                 }
             });
+
             btt_p1_c4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        // if card exists here
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p1_c4.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p1_c4.setVisibility(View.INVISIBLE);
+                            p1cards.set(3, null);
+                            action();
+                        }
                     }
                 }
             });
+
             btt_p1_c5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        // if card exists here
-                        /timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p1_c5.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p1_c5.setVisibility(View.INVISIBLE);
+                            p1cards.set(4, null);
+                            action();
+                        }
                     }
                 }
             });
+
+
             btt_p1_c6.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        // if card exists here
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p1_c6.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p1_c6.setVisibility(View.INVISIBLE);
+                            p1cards.set(5, null);
+                            action();
+                        }
                     }
                 }
             });
@@ -234,10 +255,13 @@ public class activity_game extends AppCompatActivity {
             btt_p2_c1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        // if card exists here
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p2_c1.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p2_c1.setVisibility(View.INVISIBLE);
+                            p2cards.set(0, null);
+                            action();
+                        }
                     }
                 }
             });
@@ -245,46 +269,66 @@ public class activity_game extends AppCompatActivity {
             btt_p2_c2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // if card exists here
-                    if (timerIsOn) {
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p2_c2.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p2_c2.setVisibility(View.INVISIBLE);
+                            p2cards.set(1, null);
+                            action();
+                        }
                     }
                 }
             });
             btt_p2_c3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p2_c3.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p2_c3.setVisibility(View.INVISIBLE);
+                            p2cards.set(2, null);
+                            action();
+                        }
                     }
                 }
             });
             btt_p2_c4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p2_c4.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p2_c4.setVisibility(View.INVISIBLE);
+                            p2cards.set(3, null);
+                            action();
+                        }
                     }
                 }
             });
             btt_p2_c5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p2_c5.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p2_c5.setVisibility(View.INVISIBLE);
+                            p2cards.set(4, null);
+                            action();
+                        }
                     }
                 }
             });
+
             btt_p2_c6.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (timerIsOn) {
-                        timerIsOn = false;
-                        // somehow delete card
+                    if (btt_p2_c6.getVisibility() == View.VISIBLE) {
+                        if (timerIsOn) {
+                            timerIsOn = false;
+                            btt_p2_c6.setVisibility(View.INVISIBLE);
+                            p2cards.set(5, null);
+                            action();
+                        }
                     }
                 }
             });
