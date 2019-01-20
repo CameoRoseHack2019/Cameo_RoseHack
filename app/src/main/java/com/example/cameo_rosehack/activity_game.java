@@ -77,10 +77,10 @@ public class activity_game extends AppCompatActivity {
     }
 
     // Play Game
-    void Play(state) {
-        switch (state) {                // Transition Actions
+    void Play(state S) {
+        switch (S) {                // Transition Actions
             case INIT:                  // Start state
-                state = PLAYER1;        // Go to PLAYER1 state
+                S = PLAYER1;        // Go to PLAYER1 state
                 break;
 
             case PLAYER1:               // PLAYER1 state
@@ -104,7 +104,7 @@ public class activity_game extends AppCompatActivity {
                 break;
         }
 
-        switch (state) {                // state Actions
+        switch (S) {                // state Actions
             case INIT:                  // Start state
                 Deck draw = new Deck();
                 draw.shuffleDeck();
