@@ -24,7 +24,6 @@
         android:textSize="100sp"
         android:textStyle="bold"
         android:typeface="normal"
-        app:fontFamily="@font/atomic_age"
         app:layout_constraintBottom_toBottomOf="@+id/start_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
