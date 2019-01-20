@@ -20,7 +20,7 @@ public class countDown extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.time);
 
         buttonStart = (Button)findViewById(R.id.button);
         textCounter = (TextView)findViewById(R.id.textView);
@@ -29,7 +29,7 @@ public class countDown extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                myCountDownTimer = new MyCountDownTimer(30000, 1000);
+                myCountDownTimer = new MyCountDownTimer(5000, 1000);
                 myCountDownTimer.start();
             }
         });
@@ -43,12 +43,12 @@ public class countDown extends AppCompatActivity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            textCounter.setText("seconds remaining: " + millisUntilFinished / 1000);
+            textCounter.setText("Seconds: " + millisUntilFinished / 1000);
 
         }
         @Override
         public void onFinish() {
-            textCounter.setText("/Finished!");
+            textCounter.setText("Finished!");
         }
 
 

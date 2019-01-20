@@ -13,11 +13,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    /*
+
     public void exit(View view ){
         finish();
     }
-    */
+
     public void start(View view){
         Intent intent = new Intent( this, countDown.class);
         startActivity(intent);
