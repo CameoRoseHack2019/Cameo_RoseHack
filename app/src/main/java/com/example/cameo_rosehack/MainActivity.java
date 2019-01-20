@@ -3,6 +3,7 @@ package com.example.cameo_rosehack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.content.Intent;
 
 import static com.example.cameo_rosehack.state.ACTION;
 import static com.example.cameo_rosehack.state.END;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+<<<<<<< HEAD
     // Play Game
     void Play() {
         switch (state) {                // Transition Actions
@@ -57,4 +59,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+=======
+    public void start(View view){
+        Intent intent = new Intent( this, activity_game.class);
+        startActivity(intent);
+    }
+
+>>>>>>> master
 }

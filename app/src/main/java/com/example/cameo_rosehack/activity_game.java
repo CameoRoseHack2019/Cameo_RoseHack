@@ -1,20 +1,13 @@
 package com.example.cameo_rosehack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.Display;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class activity_game extends AppCompatActivity
 {
-
-
     private Button middle;
     private TextView text;
-
-
     /*
     cards:
     0: jorker
@@ -42,37 +35,36 @@ public class activity_game extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.games);
+<<<<<<< HEAD
 
         middle = findViewById(R.id.button_middle);
         text = findViewById(R.id.text);
+=======
+>>>>>>> master
 
         Button[] cards_opponent = {
-                (Button) findViewById(R.id.button_c1_opp),
-                (Button) findViewById(R.id.button_c2_opp),
-                (Button) findViewById(R.id.button_c3_opp),
-                (Button) findViewById(R.id.button_c4_opp),
-                (Button) findViewById(R.id.button_c5_opp),
-                (Button) findViewById(R.id.button_c6_opp),
-                (Button) findViewById(R.id.button_c7_opp),
-                (Button) findViewById(R.id.button_c8_opp)
+                (Button) findViewById(R.id.btt_p2_c1),
+                (Button) findViewById(R.id.btt_p2_c2),
+                (Button) findViewById(R.id.btt_p2_c3),
+                (Button) findViewById(R.id.btt_p2_c4),
+                (Button) findViewById(R.id.btt_p2_c5),
+                (Button) findViewById(R.id.btt_p2_c6)
         };
 
         Button[] cards_player = {
-                (Button) findViewById(R.id.button_c1),
-                (Button) findViewById(R.id.button_c2),
-                (Button) findViewById(R.id.button_c3),
-                (Button) findViewById(R.id.button_c4),
-                (Button) findViewById(R.id.button_c5),
-                (Button) findViewById(R.id.button_c6),
-                (Button) findViewById(R.id.button_c7),
-                (Button) findViewById(R.id.button_c8)
+                (Button) findViewById(R.id.btt_p1_c1),
+                (Button) findViewById(R.id.btt_p1_c2),
+                (Button) findViewById(R.id.btt_p1_c3),
+                (Button) findViewById(R.id.btt_p1_c4),
+                (Button) findViewById(R.id.btt_p1_c5),
+                (Button) findViewById(R.id.btt_p1_c6)
         };
     }
 
-    protected void drawCard(int cardNum)
-    {
-        text.setVisibility(View.INVISIBLE);
-        middle.setVisibility(View.VISIBLE);
-        middle.setBackgroundResource(cards[cardNum]);
-    }
+    //protected void drawCard(int cardNum)
+    //{
+    //    text.setVisibility(View.INVISIBLE);
+    //    middle.setVisibility(View.VISIBLE);
+    //    middle.setBackgroundResource(cards[cardNum]);
+    //}
 }
