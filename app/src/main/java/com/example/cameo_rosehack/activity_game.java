@@ -114,7 +114,6 @@ public class activity_game extends AppCompatActivity {
                 break;
 
             case PLAYER1:               // PLAYER1 state
-                Button draw1 = (Button) findViewById(R.id.draw1);
 
                 break;
             case PLAYER2:               // PLAYER2 state
