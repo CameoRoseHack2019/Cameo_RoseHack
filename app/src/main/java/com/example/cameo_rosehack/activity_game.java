@@ -10,12 +10,12 @@ public class activity_game extends AppCompatActivity
     private TextView text;
     /*
     cards:
-    0: jorker
+    0: joker
     1 - 13: heart
     14 - 26: spade
     27 - 39: dia
     40 - 52: club
-    53: jorker
+    53: joker
      */
     private int[] cards =
             {

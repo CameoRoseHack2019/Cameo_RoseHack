@@ -6,6 +6,8 @@ import android.view.View;
 import android.content.Intent;
 
 import java.util.ArrayList;
+import java.util.*;
+import java.util.Collections;
 import java.util.List;
 
 import static com.example.cameo_rosehack.state.ACTION;
@@ -16,7 +18,7 @@ import static com.example.cameo_rosehack.state.PLAYER2;
 import static com.example.cameo_rosehack.state.TIMER;
 
 // The different states that the game will be in at all times from start to finish.
-enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END;}
+enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END}
 
 public class Deck{
     private List<Card> cards;
@@ -31,9 +33,9 @@ public class Deck{
             cards.add(new Card('S', i + 1));
             cards.add(new Card('C', i + 1));
         }
-        for(i = 0; i < 12; i++) {
-            cards.add(new Card('H', i + 1));
-            cards.add(new Card('D', i + 1));
+        for(int j = 0; j < 12; j++) {
+            cards.add(new Card('H', j + 1));
+            cards.add(new Card('D', j + 1));
         }
         cards.add(new Card('H', -1));
         cards.add(new Card('D', -1));
@@ -41,9 +43,10 @@ public class Deck{
         cards.add(new Card('J', 0));
     }
 
-    public void shuffleDeck(){
-
+    public void shuffleDeck(ArrayList<Card> cards){
+        Collections.shuffle(cards);
     }
+
     public List<Card> getCards() {
         return cards;
     }
@@ -67,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Play Game
-    void Play() {
-        switch (state) {                // Transition Actions
+    void Play(state State) {
+        switch (State) {                // Transition Actions
             case INIT:                  // Start state
-                state = PLAYER1;        // Go to PLAYER1 state
+                State = PLAYER1;        // Go to PLAYER1 state
                 break;
 
             case PLAYER1:               // PLAYER1 state
@@ -94,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        switch (state) {                // state Actions
+        switch (State) {                // state Actions
             case INIT:                  // Start state
                 Deck draw = new Deck();
-                draw.shuffleDeck();
+                draw.shuffleDeck(cards);
                 break;
 
             case PLAYER1:               // PLAYER1 state
