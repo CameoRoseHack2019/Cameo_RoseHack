@@ -41,7 +41,7 @@ public class activity_game extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game);
+        setContentView(R.layout.games);
 
         middle = findViewById(R.id.button_middle);
         text = findViewById(R.id.text);
