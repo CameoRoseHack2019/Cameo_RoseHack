@@ -115,7 +115,7 @@ public class activity_game extends AppCompatActivity {
     }
 
     // Play Game
-    void Play() {
+    void Play(state) {
         switch (state) {                // Transition Actions
             case INIT:                  // Start state
                 state = PLAYER1;        // Go to PLAYER1 state
