@@ -20,8 +20,11 @@
         <activity android:name=".activity_game">
         </activity>
 
+<<<<<<< HEAD
         <activity android:name=".countDown">
         </activity>
+=======
+>>>>>>> master
 
         <meta-data
             android:name="preloaded_fonts"
