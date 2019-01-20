@@ -1,11 +1,6 @@
 package com.example.cameo_rosehack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.example.cameo_rosehack.state.ACTION;
 import static com.example.cameo_rosehack.state.END;
 import static com.example.cameo_rosehack.state.INIT;
@@ -16,41 +11,6 @@ import static com.example.cameo_rosehack.state.TIMER;
 
 enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END}
 
-public class Deck{
-    private List<Card> cards;
-
-    public Deck(){
-        cards = new ArrayList<>(54);
-        populateDeck();
-    }
-
-    public void populateDeck(){
-        for(int i = 0; i < 13; i++) {
-            cards.add(new Card('S', i + 1));
-            cards.add(new Card('C', i + 1));
-        }
-        for(int i = 0; i < 12; i++) {
-            cards.add(new Card('H', i + 1));
-            cards.add(new Card('D', i + 1));
-        }
-        cards.add(new Card('H', -1));
-        cards.add(new Card('D', -1));
-        cards.add(new Card('J', 0));
-        cards.add(new Card('J', 0));
-    }
-
-    public void shuffleDeck(){
-
-    }
-
-    public List<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
-    }
-}
 
 public class activity_game extends AppCompatActivity {
     /*
@@ -102,12 +62,14 @@ public class activity_game extends AppCompatActivity {
         };
     }*/
 
-    //protected void drawCard(int cardNum)
-    //{
-    //    text.setVisibility(View.INVISIBLE);
-    //    middle.setVisibility(View.VISIBLE);
-    //    middle.setBackgroundResource(cards[cardNum]);
-    //}
+        //protected void drawCard(int cardNum)
+        //{
+        //    text.setVisibility(View.INVISIBLE);
+        //    middle.setVisibility(View.VISIBLE);
+        //    middle.setBackgroundResource(cards[cardNum]);
+        //}
+
+    }
 
     public void DealCardsToPlayers() {
 
