@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Cameo_RoseHack</string>
+    <string name="wait_for_another">Waiting for\nanother player...</string>
+    <string name="seven_eight">Tap one of your\ncards that you\nwant to look at.</string>
+    <string name="nine_ten">Tap one of\nthe opponent\'s cards\nthat you want to\nlook at.</string>
+    <string name="eleven_twelve">Tap 2 cards that\nyou want to swap.</string>
+    <string name="black_thirteen">Tap 2 cards that\nyou want to swap.</string>
 </resources>
