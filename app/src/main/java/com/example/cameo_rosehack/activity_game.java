@@ -1,11 +1,13 @@
 package com.example.cameo_rosehack;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
+
+import android.content.Intent;
 import java.util.List;
 import java.util.Random;
 
@@ -43,28 +45,11 @@ public class activity_game extends AppCompatActivity {
     Button p1display;
     Button p2display;
 
-    /*
-    cards:
-    0: joker
-    1 - 13: heart
-    14 - 26: spade
-    27 - 39: dia
-    40 - 52: club
-    53: joker
-     */
-   /* private int[] cards =
-            {
-                    R.drawable.black_joker,
-                    R.drawable.h1, R.drawable.h2, R.drawable.h3, R.drawable.h4, R.drawable.h5, R.drawable.h6, R.drawable.h7,
-                    R.drawable.h8, R.drawable.h9, R.drawable.h10, R.drawable.h11, R.drawable.h12, R.drawable.h13,
-                    R.drawable.s1, R.drawable.s2, R.drawable.s3, R.drawable.s4, R.drawable.s5, R.drawable.s6, R.drawable.s7,
-                    R.drawable.s8, R.drawable.s9, R.drawable.s10, R.drawable.s11, R.drawable.s12, R.drawable.s13,
-                    R.drawable.d1, R.drawable.d2, R.drawable.d3, R.drawable.d4, R.drawable.d5, R.drawable.d6, R.drawable.d7,
-                    R.drawable.d8, R.drawable.d9, R.drawable.d10, R.drawable.d11, R.drawable.d12, R.drawable.d13,
-                    R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5, R.drawable.c6, R.drawable.c7,
-                    R.drawable.c8, R.drawable.c9, R.drawable.c10, R.drawable.c11, R.drawable.h12, R.drawable.c13,
-                    R.drawable.red_joker
-            };*/
+    private String key1 = "SaveKey1";
+    private String key2 = "SaveKey2";
+
+    public List<Card> p1cards;
+    public List<Card> p2cards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,52 +77,22 @@ public class activity_game extends AppCompatActivity {
         btt_discard2 = (Button)findViewById(R.id.btt_discard2);
         p1display = (Button)findViewById(R.id.p1display);
         p2display = (Button)findViewById(R.id.p2display);
-
-       /* Button[] cards_opponent = {
-
-        Button[] cards_opponent = {
-                (Button) findViewById(R.id.btt_p2_c1),
-                (Button) findViewById(R.id.btt_p2_c2),
-                (Button) findViewById(R.id.btt_p2_c3),
-                (Button) findViewById(R.id.btt_p2_c4),
-                (Button) findViewById(R.id.btt_p2_c5),
-                (Button) findViewById(R.id.btt_p2_c6)
-        };
-
-        Button[] cards_player = {
-                (Button) findViewById(R.id.btt_p1_c1),
-                (Button) findViewById(R.id.btt_p1_c2),
-                (Button) findViewById(R.id.btt_p1_c3),
-                (Button) findViewById(R.id.btt_p1_c4),
-                (Button) findViewById(R.id.btt_p1_c5),
-                (Button) findViewById(R.id.btt_p1_c6)
-        };
-    }*/
-
-        //protected void drawCard(int cardNum)
-        //{
-        //    text.setVisibility(View.INVISIBLE);
-        //    middle.setVisibility(View.VISIBLE);
-        //    middle.setBackgroundResource(cards[cardNum]);
-        //}
-
     }
 
     public void DealCardsToPlayers(Deck d) {
-        List<Card> p1cards = new ArrayList<>(4);
-        ArrayList<Card> tempList1 = d.getCards();
-        p1cards.add(tempList1.remove());
-        p1cards.add(tempList1.remove());
-        p1cards.add(tempList1.remove());
-        p1cards.add(tempList1.remove());
+        p1cards = new ArrayList<>(4);
+        ArrayList<Card> tempList1 = new ArrayList<Card>(d.getCards());
+        p1cards.add(tempList1.remove(0));
+        p1cards.add(tempList1.remove(0));
+        p1cards.add(tempList1.remove(0));
+        p1cards.add(tempList1.remove(0));
 
 
-        List<Card> p2cards;
-        List<Card> tempList2 = d.getCards();
-        p2cards.add(tempList2.remove());
-        p2cards.add(tempList2.remove());
-        p2cards.add(tempList2.remove());
-        p2cards.add(tempList2.remove());
+        p2cards = new ArrayList<>(4);
+        p2cards.add(tempList1.remove(0));
+        p2cards.add(tempList1.remove(0));
+        p2cards.add(tempList1.remove(0));
+        p2cards.add(tempList1.remove(0));
     }
 
     // Play Game
@@ -148,11 +103,21 @@ public class activity_game extends AppCompatActivity {
                 break;
 
             case PLAYER1:               // PLAYER1 state
-
+                button9.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        state = END;
+                    }
+                });
                 break;
 
             case PLAYER2:               // PLAYER2 state
-
+                button6.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        state = END;
+                    }
+                });
                 break;
 
             case TIMER:                 // TIMER state
@@ -203,7 +168,43 @@ public class activity_game extends AppCompatActivity {
 
             case END:                   // END state;
 
+                //IStRUE = FALSE;
                 break;
         }
+
+        GameEnd();
     }
+
+
+    private void GameEnd()
+    {
+
+        Intent intent = new Intent( this, end_game.class);
+
+        for (int i = 0; i < p1cards.size(); ++i)
+        {
+            Card curCard = p1cards.get(i);
+            int value = curCard.getNum();
+            if (curCard.getNum() == 13 && (curCard.getSuit() == 'h' || curCard.getSuit() == 'd'))
+            {
+                value = -1;
+            }
+            intent.putExtra(key1 + String.valueOf(i), value);
+        }
+
+        for (int i = 0; i < p2cards.size(); ++i)
+        {
+            Card curCard = p2cards.get(i);
+            int value = curCard.getNum();
+            if (curCard.getNum() == 13 && (curCard.getSuit() == 'h' || curCard.getSuit() == 'd'))
+            {
+                value = -1;
+            }
+            intent.putExtra(key2 + String.valueOf(i), value);
+        }
+
+        startActivity(intent);
+        //use intent here because we want to move to end_game activity
+    }
+
 }
