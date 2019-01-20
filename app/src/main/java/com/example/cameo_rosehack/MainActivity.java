@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
-// The different states that the game will be in at all times from start to finish.
 
 // MainActivity
 public class MainActivity extends AppCompatActivity {
