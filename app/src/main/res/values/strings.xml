@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cameo_RoseHack</string>
+    <string name="cameo">CAMEO</string>
+    <string name="looking_for_a_player">Looking for a player</string>
+    <string name="load" translatable="false">LOAD</string>
+    <string name="icon">icon</string>
 </resources>
