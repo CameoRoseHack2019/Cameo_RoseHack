@@ -1,6 +1,7 @@
 package com.example.cameo_rosehack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import static com.example.cameo_rosehack.state.ACTION;
@@ -114,7 +115,11 @@ public class activity_game extends AppCompatActivity {
                 break;
 
             case PLAYER1:               // PLAYER1 state
-
+                button7.setOnClicker(new View.OnClickListener() {
+                    public void onClick(View v) {
+                                
+                    }
+                });
                 break;
             case PLAYER2:               // PLAYER2 state
 
