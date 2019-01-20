@@ -6,6 +6,6 @@
     <string name="start_button">START</string>
     <string name="cameo">CAMEO</string>
     <string name="looking_for_a_player">Looking for a player</string>
-    <string name="load" translatable="false">LOAD</string>
-    <string name="icon">icon</string>
+    <string name="load" translatable="false">Timeer</string>
+    <string name="icon">Buttonn</string>
 </resources>
