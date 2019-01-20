@@ -82,6 +82,8 @@ public class activity_game extends AppCompatActivity {
         setContentView(R.layout.games);
 
        /* Button[] cards_opponent = {
+
+        Button[] cards_opponent = {
                 (Button) findViewById(R.id.btt_p2_c1),
                 (Button) findViewById(R.id.btt_p2_c2),
                 (Button) findViewById(R.id.btt_p2_c3),
