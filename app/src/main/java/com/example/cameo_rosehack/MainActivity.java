@@ -5,24 +5,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
-import static com.example.cameo_rosehack.state.ACTION;
-import static com.example.cameo_rosehack.state.END;
-import static com.example.cameo_rosehack.state.INIT;
-import static com.example.cameo_rosehack.state.PLAYER1;
-import static com.example.cameo_rosehack.state.PLAYER2;
-import static com.example.cameo_rosehack.state.TIMER;
+//import static com.example.cameo_rosehack.state.ACTION;
+//import static com.example.cameo_rosehack.state.END;
+//import static com.example.cameo_rosehack.state.INIT;
+//import static com.example.cameo_rosehack.state.PLAYER1;
+//import static com.example.cameo_rosehack.state.PLAYER2;
+//import static com.example.cameo_rosehack.state.TIMER;
 
 // The different states that the game will be in at all times from start to finish.
-enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END;}
+/*enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END;}
 
 List<Card> Deck = new ArrayList<Card>();
 
 for(int i = 0; i < Deck.size(); i++) {
     Deck.add(new Card());
-}
+}*/
 
 // MainActivity
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Play Game
-    void Play() {
+    /*void Play() {
         switch (state) {                // Transition Actions
             case INIT:                  // Start state
                 state = PLAYER1;        // Go to PLAYER1 state
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
         }
-    }
+    }*/
 
     public void start(View view){
         Intent intent = new Intent( this, activity_game.class);

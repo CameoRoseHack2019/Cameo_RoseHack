@@ -36,9 +36,6 @@ public class activity_game extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.games);
 
-        middle = findViewById(R.id.button_middle);
-        text = findViewById(R.id.text);
-
         Button[] cards_opponent = {
                 (Button) findViewById(R.id.btt_p2_c1),
                 (Button) findViewById(R.id.btt_p2_c2),
