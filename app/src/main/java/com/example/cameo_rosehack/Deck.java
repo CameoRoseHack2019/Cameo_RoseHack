@@ -1,5 +1,6 @@
 package com.example.cameo_rosehack;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Deck{
@@ -26,6 +27,10 @@ public class Deck{
     }
 
     public void shuffleDeck(){
+        Collections.shuffle(this.cards);
+    }
+    public Card deleteCard(int index){
+        return cards.remove(index);
     }
     public List<Card> getCards() {
         return cards;
