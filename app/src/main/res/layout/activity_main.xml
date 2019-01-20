@@ -21,10 +21,10 @@
         android:text="CAMEO"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="100sp"
+        android:textSize="80sp"
         android:textStyle="bold"
         android:typeface="normal"
-        app:fontFamily="@font/atomic_age"
+        app:fontFamily="@font/titan_one"
         app:layout_constraintBottom_toBottomOf="@+id/start_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.394" />
 
     <Button
-        android:id="@+id/exit_button"
+        android:id="@+id/start_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
@@ -61,8 +61,8 @@
         android:layout_marginEnd="162dp"
         android:layout_marginRight="162dp"
         android:layout_marginBottom="1dp"
-        android:onClick="exit"
         android:text="EXIT"
+        android:onClick="exit"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
