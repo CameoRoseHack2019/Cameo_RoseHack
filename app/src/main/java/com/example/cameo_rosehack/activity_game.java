@@ -61,7 +61,14 @@ public class activity_game extends AppCompatActivity {
     public List<Card> p1cards;
     public List<Card> p2cards;
 
+    private boolean IsP1Turn;
+    private boolean IsP2Turn; // TODO: set IsP2Turn = true when P2 is playing. Do the same for P1.
+
     private boolean timerIsOn;
+    private boolean timerDone;
+
+    private boolean CardDrawn;
+    private boolean IsReadyToDraw;
     MyCountDownTimer1 myCountDownTimer1;
     MyCountDownTimer2 myCountDownTimer2;
 
@@ -95,8 +102,12 @@ public class activity_game extends AppCompatActivity {
         TimerText1 = (TextView) findViewById(R.id.timer1);
         TimerText2 = (TextView) findViewById(R.id.timer2);
         timerIsOn = false;
+        timerDone = false;
+        CardDrawn = false;
+        IsReadyToDraw = false;
 
     }
+
     public void DealCardsToPlayers(Deck d) {
         p1cards = new ArrayList<>(4);
         ArrayList<Card> tempList1 = new ArrayList<Card>(d.getCards());
@@ -111,61 +122,92 @@ public class activity_game extends AppCompatActivity {
         p2cards.add(tempList1.remove(0));
     }
 
-    void play(){
+    //TODO: implement these four functions :)
+    void LookAtBottomCard() {
+        // do something
+    }
+
+    void LookAtTopCard() {
+        // do something
+    }
+
+    void SwapCardWithDeck() {
+        // do something
+    }
+
+    void GiveOpponentCard() {
+        // give opponent card
+    }
+
+    void action() {
+        Card CurCard;
+        if (IsP1Turn) {
+            CurCard = p1cards.get(p1cards.size() - 1);
+        } else {
+            CurCard = p2cards.get(p2cards.size() - 1);
+        }
+
+        if (CurCard.getNum() == 7 || CurCard.getNum() == 8) {
+            LookAtBottomCard();
+        } else if (CurCard.getNum() == 9 || CurCard.getNum() == 10) {
+            LookAtTopCard();
+        } else if (CurCard.getNum() == 11 || CurCard.getNum() == 12) {
+            SwapCardWithDeck();
+        } else if (CurCard.getNum() == 13 && (CurCard.getSuit() == 'c' || CurCard.getSuit() == 's')) {
+            GiveOpponentCard();
+        }
+
+        return;
+    }
+
+    private void StartTimer() {
+        timerIsOn = true;
+        startTimer1();
+        startTimer2();
+    }
+
+    private void DrawCard() {
+        if (!IsReadyToDraw) return;
+        IsReadyToDraw = false;
+        List<Card> tempList = draw.getCards();
+        Random randomIndex = new Random();
+        int randomNumber = randomIndex.nextInt(draw.size());
+        Card toDisplay = draw.getCards().get(randomNumber);
+        tempList.remove(randomNumber);
+
+        if (IsP1Turn) {
+            int player1Display = getResources().getIdentifier(String.valueOf(toDisplay.getSuit()) + toDisplay.getNum(), "drawable", getPackageName());
+            p1display.setBackgroundResource(player1Display);
+            p1cards.add(toDisplay);
+        } else {
+            int player2Display = getResources().getIdentifier(String.valueOf(toDisplay.getSuit()) + toDisplay.getNum(), "drawable", getPackageName());
+            p2display.setBackgroundResource(player1Display);
+            p2cards.add(toDisplay);
+        }
+        CardDrawn = true;
+    }
+
+    void play() {
 
         Boolean isTrue = true;
-        while(   isTrue    ) {
+        while (isTrue) {
 
             button7.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    List<Card> tempList = draw.getCards();
-                    Random randomIndex = new Random();
-                    int randomNumber = randomIndex.nextInt(draw.size());
-                    Card toDisplay = draw.getCards().get(randomNumber);
-                    tempList.remove(randomNumber);
-                    int player1Display = getResources().getIdentifier(String.valueOf(toDisplay.getSuit()) + toDisplay.getNum(), "drawable", getPackageName());
-                    p1display.setBackgroundResource(player1Display);
-                    p1cards.add(toDisplay);
+                    DrawCard();
                 }
-            });
+            }); // draw card
 
             p1display.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!timerIsOn){
-                        timerIsOn = true;
-                        startTimer1();
-                        startTimer2();
-                        return;
-                    }
-
-
-
-
-                    if (p1cards.get(p1cards.size() - 1).getNum() == 7 ||p1cards.get(p1cards.size() - 1).getNum() == 8)
-                    {
-                        // look at bottom car
-                    }
-                    else if(p1cards.get(p1cards.size() - 1).getNum() == 9 ||p1cards.get(p1cards.size() - 1).getNum() == 10)
-                    {
-                        // look at top card
-                    }
-                    else if (p1cards.get(p1cards.size() - 1).getNum() == 11 ||p1cards.get(p1cards.size() - 1).getNum() == 12)
-                    {
-                        // swap one of my card with deck
-                    }
-                    else if (p1cards.get(p1cards.size() - 1).getNum() == 13 && (p1cards.get(p1cards.size() - 1).getSuit() == 'c' || p1cards.get(p1cards.size() - 1).getSuit() == 's' )
-                    {
-                        // give opponent card
-                    }
-
+                    StartTimer();
                 }
-
-
             });
 
-                    //  P1 CARD =======================================================
+
+            //  P1 CARD =======================================================
 
             btt_p1_c1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -183,7 +225,18 @@ public class activity_game extends AppCompatActivity {
                         if (timerIsOn) {
                             timerIsOn = false;
                             btt_p1_c2.setVisibility(View.INVISIBLE);
-                            p1cards.set(1,null);
+                            p1cards.set(1, null);
+                            action();
+                        }
+                        if (CardDrawn && IsP1Turn) { // when player decided to swap a card
+                            p1cards.set(1, p1cards.get(p1cards.size() - 1));
+                            Card toDisplay = p1cards.remove(p1cards.size() - 1);
+                            CardDrawn = false;
+                            int display = getResources().getIdentifier(String.valueOf(toDisplay.getSuit()) + toDisplay.getNum(), "drawable", getPackageName());
+                            p1display.setBackgroundResource(display);
+                            IsP2Turn = true;
+                            IsP1Turn = false;
+                            IsReadyToDraw = true;
                         }
                         // TODO: Do the same for all the card buttons!!!!
                     }
@@ -214,7 +267,7 @@ public class activity_game extends AppCompatActivity {
                 public void onClick(View v) {
                     if (timerIsOn) {
                         // if card exists here
-                        /timerIsOn = false;
+                        timerIsOn = false;
                         // somehow delete card
                     }
                 }
@@ -290,18 +343,15 @@ public class activity_game extends AppCompatActivity {
         }
     }
 
-    private void GameEnd()
-    {
+    private void GameEnd() {
 
-        Intent intent = new Intent( this , end_game.class);
+        Intent intent = new Intent(this, end_game.class);
 
         int player1Total = 0;
-        for (int i = 0; i < p1cards.size(); ++i)
-        {
+        for (int i = 0; i < p1cards.size(); ++i) {
             Card curCard = p1cards.get(i);
             int value = curCard.getNum();
-            if (curCard.getNum() == 13 && (curCard.getSuit() == 'h' || curCard.getSuit() == 'd'))
-            {
+            if (curCard.getNum() == 13 && (curCard.getSuit() == 'h' || curCard.getSuit() == 'd')) {
                 value = -1;
             }
             player1Total += value;
@@ -309,12 +359,10 @@ public class activity_game extends AppCompatActivity {
         }
 
         int player2Total = 0;
-        for (int i = 0; i < p2cards.size(); ++i)
-        {
+        for (int i = 0; i < p2cards.size(); ++i) {
             Card curCard = p2cards.get(i);
             int value = curCard.getNum();
-            if (curCard.getNum() == 13 && (curCard.getSuit() == 'h' || curCard.getSuit() == 'd'))
-            {
+            if (curCard.getNum() == 13 && (curCard.getSuit() == 'h' || curCard.getSuit() == 'd')) {
                 value = -1;
             }
             player2Total += value;
@@ -325,34 +373,39 @@ public class activity_game extends AppCompatActivity {
         //use intent here because we want to move to end_game activity
     }
 
-    private void startTimer1()
-    {
+    private void startTimer1() {
 
         myCountDownTimer1 = new MyCountDownTimer1(5000, 1000);
         myCountDownTimer1.start();
     }
-    private void startTimer2()
-    {
+
+    private void startTimer2() {
         myCountDownTimer2 = new MyCountDownTimer2(5000, 1000);
         myCountDownTimer2.start();
     }
+
     public class MyCountDownTimer1 extends CountDownTimer {
 
-            public MyCountDownTimer1(long millisInFuture, long countDownInterval) {
-                super(millisInFuture, countDownInterval);
-            }
+        public MyCountDownTimer1(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
 
-            @Override
-            public void onTick(long millisUntilFinished) {
-                TimerText1.setText("seconds: " + millisUntilFinished / 1000);
+        @Override
+        public void onTick(long millisUntilFinished) {
+            TimerText1.setText("seconds: " + millisUntilFinished / 1000);
 
-            }
-            @Override
-            public void onFinish() {
+        }
+
+        @Override
+        public void onFinish() {
+            if (timerIsOn) {
                 timerIsOn = false;
-                TimerText1.setText("Finished!");
+                action();
             }
+            TimerText1.setText("Finished!");
+        }
     }
+
     public class MyCountDownTimer2 extends CountDownTimer {
 
         public MyCountDownTimer2(long millisInFuture, long countDownInterval) {
@@ -364,8 +417,10 @@ public class activity_game extends AppCompatActivity {
             TimerText2.setText("seconds: " + millisUntilFinished / 1000);
 
         }
+
         @Override
         public void onFinish() {
             TimerText2.setText("Finished!");
         }
     }
+}
