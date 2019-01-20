@@ -3,7 +3,6 @@ package com.example.cameo_rosehack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,8 +16,4 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public void start(View view){
-        Intent intent = new Intent( this, Lookingforplayers.class);
-        startActivity(intent);
-    }
 }
