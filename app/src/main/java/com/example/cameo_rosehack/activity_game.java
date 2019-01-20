@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.os.CountDownTimer;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,7 @@ enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END}
 
 
 public class activity_game extends AppCompatActivity {
+
     Button button7;
     Button button9;
     Button button6;
@@ -44,11 +48,17 @@ public class activity_game extends AppCompatActivity {
     Button p1display;
     Button p2display;
 
+    TextView TimerText1;
+    TextView TimerText2;
+
     private String key1 = "SaveKey1";
     private String key2 = "SaveKey2";
 
     public List<Card> p1cards;
     public List<Card> p2cards;
+
+    MyCountDownTimer1 myCountDownTimer1;
+    MyCountDownTimer2 myCountDownTimer2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,37 +86,10 @@ public class activity_game extends AppCompatActivity {
         btt_discard2 = (Button)findViewById(R.id.btt_discard2);
         p1display = (Button)findViewById(R.id.p1display);
         p2display = (Button)findViewById(R.id.p2display);
-
-       /* Button[] cards_opponent = {
-
-        Button[] cards_opponent = {
-                (Button) findViewById(R.id.btt_p2_c1),
-                (Button) findViewById(R.id.btt_p2_c2),
-                (Button) findViewById(R.id.btt_p2_c3),
-                (Button) findViewById(R.id.btt_p2_c4),
-                (Button) findViewById(R.id.btt_p2_c5),
-                (Button) findViewById(R.id.btt_p2_c6)
-        };
-
-        Button[] cards_player = {
-                (Button) findViewById(R.id.btt_p1_c1),
-                (Button) findViewById(R.id.btt_p1_c2),
-                (Button) findViewById(R.id.btt_p1_c3),
-                (Button) findViewById(R.id.btt_p1_c4),
-                (Button) findViewById(R.id.btt_p1_c5),
-                (Button) findViewById(R.id.btt_p1_c6)
-        };
-    }*/
-
-        //protected void drawCard(int cardNum)
-        //{
-        //    text.setVisibility(View.INVISIBLE);
-        //    middle.setVisibility(View.VISIBLE);
-        //    middle.setBackgroundResource(cards[cardNum]);
-        //}
+        TimerText1 = (TextView)findViewById(R.id.timer1);
+        TimerText2 = (TextView)findViewById(R.id.timer2);
 
     }
-
     public void DealCardsToPlayers(Deck d) {
 
         p1cards = new ArrayList<>(4);
@@ -125,75 +108,75 @@ public class activity_game extends AppCompatActivity {
     }
 
     // Play Game
-    void Play() {
-        switch (state) {                // Transition Actions
-            case INIT:                  // Start state
-                state = PLAYER1;        // Go to PLAYER1 state
-                break;
-
-            case PLAYER1:               // PLAYER1 state
-                button9.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        state = END;
-                    }
-                });
-                break;
-
-            case PLAYER2:               // PLAYER2 state
-                button6.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        state = END;
-                    }
-                });
-                break;
-
-            case TIMER:                 // TIMER state
-
-                break;
-
-            case ACTION:                // ACTION state
-
-                break;
-
-            case END:                   // END state;
-
-                break;
-        }
-
-        switch (state) {                // state Actions
-            case INIT:                  // Start state
-                Deck draw = new Deck();
-                draw.shuffleDeck();
-                DealCardsToPlayers(draw);
-
-                break;
-
-            case PLAYER1:               // PLAYER1 state
-
-                break;
-
-            case PLAYER2:               // PLAYER2 state
-
-                break;
-
-            case TIMER:                 // TIMER state
-
-                break;
-
-            case ACTION:                // ACTION state
-
-                break;
-
-            case END:                   // END state;
-
-                //IStRUE = FALSE;
-                break;
-        }
-
-        GameEnd();
-    }
+//    void Play() {
+//        switch (state) {                // Transition Actions
+//            case INIT:                  // Start state
+//                state = PLAYER1;        // Go to PLAYER1 state
+//                break;
+//
+//            case PLAYER1:               // PLAYER1 state
+//                button9.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        state = END;
+//                    }
+//                });
+//                break;
+//
+//            case PLAYER2:               // PLAYER2 state
+//                button6.setOnClickListener(new View.OnClickListener(){
+//                    @Override
+//                    public void onClick(View v) {
+//                        state = END;
+//                    }
+//                });
+//                break;
+//
+//            case TIMER:                 // TIMER state
+//
+//                break;
+//
+//            case ACTION:                // ACTION state
+//
+//                break;
+//
+//            case END:                   // END state;
+//
+//                break;
+//        }
+//
+//        switch (state) {                // state Actions
+//            case INIT:                  // Start state
+//                Deck draw = new Deck();
+//                draw.shuffleDeck();
+//                DealCardsToPlayers(draw);
+//
+//                break;
+//
+//            case PLAYER1:               // PLAYER1 state
+//
+//                break;
+//
+//            case PLAYER2:               // PLAYER2 state
+//
+//                break;
+//
+//            case TIMER:                 // TIMER state
+//
+//                break;
+//
+//            case ACTION:                // ACTION state
+//
+//                break;
+//
+//            case END:                   // END state;
+//
+//                //IStRUE = FALSE;
+//                break;
+//        }
+//
+//        GameEnd();
+//    }
 
 
     private void GameEnd()
@@ -201,6 +184,7 @@ public class activity_game extends AppCompatActivity {
 
         Intent intent = new Intent( this, end_game.class);
 
+        int player1Total = 0;
         for (int i = 0; i < p1cards.size(); ++i)
         {
             Card curCard = p1cards.get(i);
@@ -209,9 +193,11 @@ public class activity_game extends AppCompatActivity {
             {
                 value = -1;
             }
-            intent.putExtra(key1 + String.valueOf(i), value);
+            player1Total += value;
+            intent.putExtra(key1, player1Total);
         }
 
+        int player2Total = 0;
         for (int i = 0; i < p2cards.size(); ++i)
         {
             Card curCard = p2cards.get(i);
@@ -220,11 +206,53 @@ public class activity_game extends AppCompatActivity {
             {
                 value = -1;
             }
-            intent.putExtra(key2 + String.valueOf(i), value);
+            player2Total += value;
+            intent.putExtra(key2, player2Total);
         }
-
         startActivity(intent);
-        //use intent here because we want to move to end_game activity
     }
 
+    private void startTimer1()
+    {
+
+        myCountDownTimer1 = new MyCountDownTimer1(5000, 1000);
+        myCountDownTimer1.start();
+    }
+    private void startTimer2()
+    {
+        myCountDownTimer2 = new MyCountDownTimer2(5000, 1000);
+        myCountDownTimer2.start();
+    }
+    public class MyCountDownTimer1 extends CountDownTimer {
+
+            public MyCountDownTimer1(long millisInFuture, long countDownInterval) {
+                super(millisInFuture, countDownInterval);
+            }
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                TimerText1.setText("seconds: " + millisUntilFinished / 1000);
+
+            }
+            @Override
+            public void onFinish() {
+                TimerText1.setText("Finished!");
+            }
+    }
+    public class MyCountDownTimer2 extends CountDownTimer {
+
+        public MyCountDownTimer2(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            TimerText2.setText("seconds: " + millisUntilFinished / 1000);
+
+        }
+        @Override
+        public void onFinish() {
+            TimerText2.setText("Finished!");
+        }
+    }
 }
