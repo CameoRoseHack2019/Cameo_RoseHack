@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static com.example.cameo_rosehack.state.ACTION;
 import static com.example.cameo_rosehack.state.END;
@@ -170,16 +171,27 @@ public class activity_game extends AppCompatActivity {
 
         switch (S) {                    // State Actions
             case INIT:                  // Start state
-                Deck draw = new Deck();
+                final Deck draw = new Deck();
                 draw.shuffleDeck();
                 DealCardsToPlayers(draw);
 
                 break;
 
             case PLAYER1:               // PLAYER1 state
+<<<<<<< HEAD
                 button7.setOnClicker(new View.OnClickListener() {
                     public void onClick(View v) {
                                 
+=======
+
+                button7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        List<> tempList = new List<>;
+                        Random randomIndex = new Random();
+                        int randomNumber = randomIndex.nextInt();
+
+>>>>>>> master
                     }
                 });
                 break;
