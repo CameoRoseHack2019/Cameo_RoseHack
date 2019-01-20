@@ -106,6 +106,7 @@ public class activity_game extends AppCompatActivity {
         p2cards.add(tempList1.remove(0));
         p2cards.add(tempList1.remove(0));
     }
+    
 
     // Play Game
 //    void Play() {
