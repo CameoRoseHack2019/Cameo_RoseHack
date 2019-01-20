@@ -35,12 +35,9 @@ public class activity_game extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.games);
-<<<<<<< HEAD
 
         middle = findViewById(R.id.button_middle);
         text = findViewById(R.id.text);
-=======
->>>>>>> master
 
         Button[] cards_opponent = {
                 (Button) findViewById(R.id.btt_p2_c1),

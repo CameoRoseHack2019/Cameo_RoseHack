@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-<<<<<<< HEAD
     // Play Game
     void Play() {
         switch (state) {                // Transition Actions
@@ -57,13 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
-
-=======
+    
     public void start(View view){
         Intent intent = new Intent( this, activity_game.class);
         startActivity(intent);
     }
-
->>>>>>> master
 }
