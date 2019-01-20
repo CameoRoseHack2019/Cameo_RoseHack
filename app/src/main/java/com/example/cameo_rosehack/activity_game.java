@@ -1,12 +1,15 @@
 package com.example.cameo_rosehack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+=======
+>>>>>>> master
 import static com.example.cameo_rosehack.state.ACTION;
 import static com.example.cameo_rosehack.state.END;
 import static com.example.cameo_rosehack.state.INIT;
@@ -17,6 +20,7 @@ import static com.example.cameo_rosehack.state.TIMER;
 
 enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END}
 
+<<<<<<< HEAD
 public class Deck{
     private List<Card> cards;
 
@@ -52,6 +56,8 @@ public class Deck{
         this.cards = cards;
     }
 }
+=======
+>>>>>>> master
 
 public class activity_game extends AppCompatActivity {
     /*
@@ -103,14 +109,17 @@ public class activity_game extends AppCompatActivity {
         };
     }*/
 
-    //protected void drawCard(int cardNum)
-    //{
-    //    text.setVisibility(View.INVISIBLE);
-    //    middle.setVisibility(View.VISIBLE);
-    //    middle.setBackgroundResource(cards[cardNum]);
-    //}
+        //protected void drawCard(int cardNum)
+        //{
+        //    text.setVisibility(View.INVISIBLE);
+        //    middle.setVisibility(View.VISIBLE);
+        //    middle.setBackgroundResource(cards[cardNum]);
+        //}
 
-    public void DealCardsToPlayers(){
+    }
+
+    public void DealCardsToPlayers() {
+
 
     }
 
