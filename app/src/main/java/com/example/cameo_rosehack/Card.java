@@ -20,6 +20,6 @@ public class Card {
         this.num = num;
     }
 
-    public Card(){suit = 0; num = 0;};
-    public Card(char letter, int number) {suit = letter; num = number;};
+    public Card(){}
+    public Card(char letter, int number) {this.suit = letter; this.num = number;}
 }
