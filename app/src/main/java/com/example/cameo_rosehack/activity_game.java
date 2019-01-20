@@ -1,6 +1,10 @@
 package com.example.cameo_rosehack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
 import static com.example.cameo_rosehack.state.ACTION;
 import static com.example.cameo_rosehack.state.END;
 import static com.example.cameo_rosehack.state.INIT;
@@ -13,6 +17,29 @@ enum state{INIT, PLAYER1, PLAYER2, TIMER, ACTION, END}
 
 
 public class activity_game extends AppCompatActivity {
+    Button button7;
+    Button button9;
+    Button button6;
+    Button button8;
+    Button btt_p1_c1;
+    Button btt_p1_c2;
+    Button btt_p1_c3;
+    Button btt_p1_c4;
+    Button btt_p1_c5;
+    Button btt_p1_c6;
+    Button btt_p2_c1;
+    Button btt_p2_c2;
+    Button btt_p2_c3;
+    Button btt_p2_c4;
+    Button btt_p2_c5;
+    Button btt_p2_c6;
+    Button btt_deck1;
+    Button btt_deck2;
+    Button btt_discard1;
+    Button btt_discard2;
+    Button p1display;
+    Button p2display;
+
     /*
     cards:
     0: jorker
@@ -40,6 +67,28 @@ public class activity_game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.games);
+        button7 = (Button)findViewById(R.id.button7);
+        button9 = (Button)findViewById(R.id.button9);
+        button6 = (Button)findViewById(R.id.button6);
+        button8 = (Button)findViewById(R.id.button8);
+        btt_p1_c1 = (Button)findViewById(R.id.btt_p1_c1);
+        btt_p1_c2 = (Button)findViewById(R.id.btt_p1_c2);
+        btt_p1_c3 = (Button)findViewById(R.id.btt_p1_c3);
+        btt_p1_c4 = (Button)findViewById(R.id.btt_p1_c4);
+        btt_p1_c5 = (Button)findViewById(R.id.btt_p1_c5);
+        btt_p1_c6 = (Button)findViewById(R.id.btt_p1_c6);
+        btt_p2_c1 = (Button)findViewById(R.id.btt_p2_c1);
+        btt_p2_c2 = (Button)findViewById(R.id.btt_p2_c2);
+        btt_p2_c3 = (Button)findViewById(R.id.btt_p2_c3);
+        btt_p2_c4 = (Button)findViewById(R.id.btt_p2_c4);
+        btt_p2_c6 = (Button)findViewById(R.id.btt_p2_c6);
+        btt_p2_c5 = (Button)findViewById(R.id.btt_p2_c5);
+        btt_deck1 = (Button)findViewById(R.id.btt_deck1);
+        btt_deck2 = (Button)findViewById(R.id.btt_deck2);
+        btt_discard1 = (Button)findViewById(R.id.btt_discard1);
+        btt_discard2 = (Button)findViewById(R.id.btt_discard2);
+        p1display = (Button)findViewById(R.id.p1display);
+        p2display = (Button)findViewById(R.id.p2display);
 
        /* Button[] cards_opponent = {
 
@@ -71,9 +120,21 @@ public class activity_game extends AppCompatActivity {
 
     }
 
-    public void DealCardsToPlayers() {
+    public void DealCardsToPlayers(Deck d) {
+        List<Card> p1cards = new ArrayList<>(4);
+        ArrayList<Card> tempList1 = d.getCards();
+        p1cards.add(tempList1.remove());
+        p1cards.add(tempList1.remove());
+        p1cards.add(tempList1.remove());
+        p1cards.add(tempList1.remove());
 
 
+        List<Card> p2cards;
+        List<Card> tempList2 = d.getCards();
+        p2cards.add(tempList2.remove());
+        p2cards.add(tempList2.remove());
+        p2cards.add(tempList2.remove());
+        p2cards.add(tempList2.remove());
     }
 
     // Play Game
@@ -108,7 +169,7 @@ public class activity_game extends AppCompatActivity {
             case INIT:                  // Start state
                 Deck draw = new Deck();
                 draw.shuffleDeck();
-                DealCardsToPlayers();
+                DealCardsToPlayers(draw);
 
                 break;
 

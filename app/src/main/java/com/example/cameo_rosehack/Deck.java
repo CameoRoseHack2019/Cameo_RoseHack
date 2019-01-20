@@ -27,6 +27,9 @@ public class Deck{
 
     public void shuffleDeck(){
     }
+    public Card deleteCard(int index){
+        return cards.remove(index);
+    }
     public List<Card> getCards() {
         return cards;
     }
