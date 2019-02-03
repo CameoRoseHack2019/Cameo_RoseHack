@@ -5,38 +5,45 @@ import java.util.List;
 
 public class Deck{
     private List<Card> cards;
+    private int[] cardsImages;
 
     public Deck(){
-        cards = new ArrayList<>(54);
-        populateDeck();
+        initializeDeck();
     }
 
-    public void populateDeck(){
+    // Initialize Deck
+    public void initializeDeck(){
+        cards = null;
+        cards = new ArrayList<>(54);
+
         for(int i = 0; i < 13; i++) {
-            cards.add(new Card('S', i + 1));
-            cards.add(new Card('C', i + 1));
+            cards.add(new Card('s', i + 1));
+            cards.add(new Card('c', i + 1));
+            cards.add(new Card('h', i + 1));
+            cards.add(new Card('d', i + 1));
         }
-        for(int i = 0; i < 12; i++) {
-            cards.add(new Card('H', i + 1));
-            cards.add(new Card('D', i + 1));
-        }
-        cards.add(new Card('H', -1));
-        cards.add(new Card('D', -1));
-        cards.add(new Card('J', 0));
-        cards.add(new Card('J', 0));
+        cards.add(new Card('j', 1)); // black
+        cards.add(new Card('j', 2)); // red
     }
 
     public int size(){
         return cards.size();
     }
+
     public void shuffleDeck(){
         Collections.shuffle(this.cards);
     }
-    public List<Card> getCards() {
-        return cards;
+
+    public Card drawCard()
+    {
+        Card temp = cards.get(0);
+        cards.remove(0);
+        if (cards.size() == 0)
+        {
+            // Game End!!
+        }
+        return temp;
     }
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
-    }
+
 }
 
